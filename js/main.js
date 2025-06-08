@@ -1,3 +1,6 @@
+// URL твоего Cloudflare Worker'а
+const workerUrl = 'https://still-snow-4ac7.irkplast.workers.dev/'; 
+
 let formData = {};
 
 function showStep(step) {
@@ -8,8 +11,16 @@ function showStep(step) {
 }
 
 function submitPost() {
-  alert("Функция отправки пока отключена (следующий шаг разработки).");
-  showStep(4);
+  const postText = document.querySelector('[data-step="2"] textarea')?.value ||
+                   document.getElementById('preview')?.innerText;
+
+  if (!postText) {
+      alert("Пост пустой!");
+      return;
+  }
+
+  // Отправляем пост на сервер
+  sendPostToServer(postText);
 }
 
 function updatePreview() {
@@ -47,3 +58,32 @@ document.addEventListener('input', e => {
 
 // Обновление при смене категории
 document.getElementById('category').addEventListener('change', updatePreview);
+
+// Функция для отправки данных на сервер
+async function sendPostToServer(postText) {
+  try {
+      const response = await fetch(workerUrl, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              postText
+          })
+      });
+
+      const result = await response.json();
+
+      console.log('Ответ от сервера:', result);
+
+      if (result && result.response && result.response.post_id) {
+          showStep(4); // Переход к экрану успеха
+      } else {
+          alert('Ошибка при отправке поста');
+          console.error(result);
+      }
+  } catch (error) {
+      alert('Не удалось подключиться к серверу');
+      console.error(error);
+  }
+}
