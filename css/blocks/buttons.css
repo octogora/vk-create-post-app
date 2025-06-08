@@ -1,0 +1,46 @@
+.buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #4c75a3;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #3b5e8b;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #ccc;
+}
+
+.btn-back,
+.btn-submit,
+.btn-home {
+  background-color: #4c75a3;
+  color: white;
+}
+
+.btn-back:hover,
+.btn-submit:hover,
+.btn-home:hover {
+  background-color: #3b5e8b;
+}

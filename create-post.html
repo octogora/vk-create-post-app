@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Создать пост</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <h1>Создать пост</h1>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="page-content">
+
+      <!-- Шаг 1: Выбор способа -->
+      <section class="step active" data-step="1">
+        <p>У вас уже есть готовый текст объявления?</p>
+        <div class="buttons">
+          <button class="btn btn-primary" onclick="showStep(2)">✅ У меня есть текст</button>
+          <button class="btn btn-secondary" onclick="showStep(3)">❌ Нет, хочу создать сейчас</button>
+        </div>
+      </section>
+
+      <!-- Шаг 2: Вставка готового текста -->
+      <section class="step" data-step="2">
+        <label for="manual-text">🔹 Вставьте ваш текст сюда:</label>
+        <textarea id="manual-text" placeholder="Вставьте готовый текст сюда..."></textarea>
+        <div class="buttons">
+          <button class="btn btn-back" onclick="showStep(1)">🔙 Назад</button>
+          <button class="btn btn-submit" onclick="submitPost()">⬆️ Отправить в предложку</button>
+        </div>
+      </section>
+
+      <!-- Шаг 3: Форма заполнения -->
+      <section class="step" data-step="3">
+        <form id="post-form">
+          <div class="form-group">
+            <label for="title">🔹 Заголовок:</label>
+            <input type="text" id="title" placeholder="Например: Продаю детские игрушки" required />
+          </div>
+          <div class="form-group">
+            <label for="content">🔹 Текст:</label>
+            <textarea id="content" placeholder="Описание объявления..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="category">🔹 Категория:</label>
+            <select id="category">
+              <option value="prodam">Продам</option>
+              <option value="kuplu">Куплю</option>
+              <option value="otdam">Отдам</option>
+              <option value="ishu">Ищу</option>
+              <option value="usluga">Предлагаю услугу</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="location">📍 Местоположение (необязательно):</label>
+            <input type="text" id="location" placeholder="Город или район" />
+          </div>
+          <div class="form-group">
+            <label for="contacts">📞 Контакты (необязательно):</label>
+            <input type="text" id="contacts" placeholder="Телефон, Telegram и т.п." />
+          </div>
+          <h3>👁 Предпросмотр поста:</h3>
+          <div class="preview" id="preview">...</div>
+        </form>
+        <div class="buttons">
+          <button class="btn btn-back" onclick="showStep(1)">🔙 Назад</button>
+          <button class="btn btn-submit" onclick="submitPost()">⬆️ Отправить в предложку</button>
+        </div>
+      </section>
+
+      <!-- Шаг 4: Успешная отправка -->
+      <section class="step" data-step="4">
+        <h2>✅ Ваш пост отправлен!</h2>
+        <p>Мы передали его в предложку сообщества.</p>
+        <div class="buttons">
+          <button class="btn btn-home" onclick="showStep(1)">🏠 На главную</button>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
