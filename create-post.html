@@ -4,20 +4,7 @@
   <meta charset="UTF-8" />
   <title>Создать пост</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-  
-  <script src="https://unpkg.com/@vkontakte/vk-bridge@3/dist/browser.min.js"></script>
-  <script>
-    // Инициализация VK Bridge
-    window.vkBridge = window.VKBridge;
-
-    // Пример: получаем информацию о пользователе
-    vkBridge.send("VKWebAppInit", {});
-    vkBridge.send("VKWebAppGetUserInfo", {})
-      .then(data => {
-        console.log('Имя пользователя:', data.first_name);
-      });
-  </script>
+  <link rel="stylesheet" href="css/style.css" />  
 </head>
 <body>
 
@@ -101,10 +88,9 @@
 
   </div>
 
-  <script src="js/main.js"></script>
-  <script src="https://unpkg.com/@vkontakte/vk-bridge@3/dist/browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@vkontakte/vk-bridge@3/dist/browser.min.js"></script>
   <script>
-    // Инициализируем VK Bridge
+    // Инициализация VK Bridge
     if (window.VKBridge) {
       window.vkBridge = window.VKBridge();
       vkBridge.send("VKWebAppInit", {});
@@ -112,6 +98,25 @@
     } else {
       console.warn("VK Bridge не загружен");
     }
+  </script>
+  
+  <script src="js/main.js"></script>
+  
+  <!-- Единая проверка и запуск формы -->
+  <script>
+    window.addEventListener('load', () => {
+      // Защита от раннего вызова
+      const checkFunction = () => {
+        if (typeof showStep === 'function') {
+          showStep(1);
+        } else {
+          console.warn("Форма не загружена. Возможно, есть ошибки в main.js");
+          setTimeout(checkFunction, 100); // Проверяем каждые 100мс, пока функция не появится
+        }
+      };
+
+      checkFunction();
+    });
   </script>
 
 </body>
