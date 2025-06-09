@@ -102,5 +102,17 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="https://unpkg.com/@vkontakte/vk-bridge@3/dist/browser.min.js"></script>
+  <script>
+    // Инициализируем VK Bridge
+    if (window.VKBridge) {
+      window.vkBridge = window.VKBridge();
+      vkBridge.send("VKWebAppInit", {});
+      console.log("VK Bridge инициализирован");
+    } else {
+      console.warn("VK Bridge не загружен");
+    }
+  </script>
+
 </body>
 </html>
