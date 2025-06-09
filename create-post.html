@@ -5,6 +5,19 @@
   <title>Создать пост</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css" />
+  
+  <script src="https://unpkg.com/@vkontakte/vk-bridge@3/dist/browser.min.js"></script>
+  <script>
+    // Инициализация VK Bridge
+    window.vkBridge = window.VKBridge;
+
+    // Пример: получаем информацию о пользователе
+    vkBridge.send("VKWebAppInit", {});
+    vkBridge.send("VKWebAppGetUserInfo", {})
+      .then(data => {
+        console.log('Имя пользователя:', data.first_name);
+      });
+  </script>
 </head>
 <body>
 
