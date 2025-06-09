@@ -8,9 +8,10 @@
 
 <body>
   <script>
-    const url = window.location.pathname;
-    const cleanUrl = url.startsWith('/vk-create-post-app') ? url : '/vk-create-post-app/';
-    window.location.replace(cleanUrl);
+    // Перенаправляем только если попали сюда напрямую
+    if (window.location.pathname === '/vk-create-post-app/' || window.location.pathname === '/vk-create-post-app') {
+      window.location.replace('/vk-create-post-app/create-post.html');
+    }
   </script>
 </body>
 
